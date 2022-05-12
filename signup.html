@@ -7,20 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-
+    <style>
+        h3{
+            text-align: center;
+        }
+       
+    </style>
 </head>
 
 <body>
+
     <h3>회원가입페이지</h3>
-    아이디 <br /> <input type="text" id="id1" onblur="idCheck()">
-    <i style="color:gray" id="gray3" class="bi bi-file-lock2"></i> <br /> <br />
+    <div>아이디 <br /> <input type="text" id="id1" onblur="idCheck()">
+    <i style="color:gray" id="gray3" class="bi bi-file-lock2"></i> <br /> 
     <p id="idCheck1"></p>
     비밀번호 <br /> <input type="password" id="pw1" placeholder="5~16 자리의 숫자, 영문소문자" onblur="password_exp()">
-    <i style="color:gray" id="gray1" class="bi bi-file-lock2"></i> <br />
-    <p id="passwordExp"></p> <br/>
+    <i style="color:gray" id="gray1" class="bi bi-file-lock2"></i>
+    <p id="passwordExp"></p> <br />
     비밀번호 확인 <br /> <input type="password" id="pw2" placeholder="비밀번호 한번 더 입력" onblur="pwCheck()">
-    <i style="color:gray" id="gray" class="bi bi-file-lock2"></i> 
-    <p id="pwCheckResult"></p> <br/>
+    <i style="color:gray" id="gray" class="bi bi-file-lock2"></i>
+    <p id="pwCheckResult"></p> <br />
     이메일 <br /> <input type="text" id="userEmail"> @
     <input type="text" id="userEmail2">
     <select id="emailCheck" onchange="emailchoice()">
@@ -29,68 +35,97 @@
         <option value="daum.net">daum.net</option>
         <option value="yahoo.com">yahoo.com</option>
         <option value="nate.com">nate.com</option>
-    </select> <br/> <br/> <br/>
-    핸드폰번호 <br/> <input type="text" id="phoneNum" onblur="phoneCheck()" placeholder="ex)000-0000-0000">
-    <i style="color:gray" id="gray2" class="bi bi-file-lock2"></i>
+    </select> <br /> <br />
+    핸드폰번호 <br /> <input type="text" id="phoneNum" onblur="phoneCheck()" placeholder="ex)000-0000-0000">
+    <i style="color:gray" id="gray2" class="bi bi-file-lock2"></i> <br/> <br/>
+    <div>
+
+    생년월일<br/>
+        <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)"> <br/>
+             <select id="mm">
+                <option>월</option>
+                <option value="01">1</option>
+                <option value="02">2</option>
+                <option value="03">3</option>
+                <option value="04">4</option>
+                <option value="05">5</option>
+                <option value="06">6</option>
+                <option value="07">7</option>
+                <option value="08">8</option>
+                <option value="09">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+            </select>
+                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
+            </div>
+    <hr>
+    <div class="btn_area">
+        <button type="button">
+            <span>가입하기</span>
+        </button>
+     </div>
 </body>
-    <script>
-        function idCheck() {
-            const id = document.getElementById("id1").value;
-            const exp = /^(?=.*[a-z])[a-z\d]{5,15}$/;
-            const idCheck1 = document.getElementById("idCheck1");
-            const colorChange = document.getElementById("gray3")
-            if(id.match(exp)) {
-                idCheck1.innerHTML = "사용 할 수 있는 아이디입니다"
-                idCheck1.style.color = "green";
-                colorChange.style.color = "green";
-            }else {
-                colorChange.style.color = "red";
-                idCheck1.innerHTML = "영어 소문자 + 숫자를 사용하세요"
-                idCheck1.style.color = "red";
-            }
+<script>
+    function idCheck() {
+        const id = document.getElementById("id1").value;
+        const exp = /^(?=.*[a-z])[a-z\d]{5,15}$/;
+        const idCheck1 = document.getElementById("idCheck1");
+        const colorChange = document.getElementById("gray3")
+        if (id.match(exp)) {
+            idCheck1.innerHTML = "사용 할 수 있는 아이디입니다"
+            idCheck1.style.color = "green";
+            colorChange.style.color = "green";
+        } else {
+            colorChange.style.color = "red";
+            idCheck1.innerHTML = "영어 소문자 + 숫자를 사용하세요"
+            idCheck1.style.color = "red";
         }
-        function password_exp() {
-            const pw1 = document.getElementById("pw1").value;
-            const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{5,15}$/;
-            const colorChange = document.getElementById("gray1");
-            const result = document.getElementById("passwordExp");
-            if(!pw1.match(exp)) {
-                result.innerHTML = "영문소문자 + 숫자를 사용하세요!"
-                result.style.color = "red";
-            }else {
-                colorChange.style.color = "green";
-            }
+    }
+    function password_exp() {
+        const pw1 = document.getElementById("pw1").value;
+        const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{5,15}$/;
+        const colorChange = document.getElementById("gray1");
+        const result = document.getElementById("passwordExp");
+        if (!pw1.match(exp)) {
+            result.innerHTML = "영문소문자 + 숫자를 사용하세요!"
+            result.style.color = "red";
+        } else {
+            colorChange.style.color = "green";
+            result.innerHTML = ""
         }
-        function pwCheck() {
-            const password1 = document.getElementById("pw1").value;
-            const password2 = document.getElementById("pw2").value;
-            const checkResult = document.getElementById("pwCheckResult");
-            const colorChange = document.getElementById("gray");
-            if(password1 == password2) {
-                checkResult.innerHTML = "비밀번호가 일치합니다";
-                checkResult.style.color = "green";
-                colorChange.style.color = "green";
-            }else {
-                checkResult.innerHTML = "비밀번호가 일치하지 않습니다"
-                checkResult.style.color = "red";
-                colorChange.style.color = "red";
-            }
+    }
+    function pwCheck() {
+        const password1 = document.getElementById("pw1").value;
+        const password2 = document.getElementById("pw2").value;
+        const checkResult = document.getElementById("pwCheckResult");
+        const colorChange = document.getElementById("gray");
+        if (password1 == password2) {
+            checkResult.innerHTML = "비밀번호가 일치합니다";
+            checkResult.style.color = "green";
+            colorChange.style.color = "green";
+        } else {
+            checkResult.innerHTML = "비밀번호가 일치하지 않습니다"
+            checkResult.style.color = "red";
+            colorChange.style.color = "red";
         }
-        function emailchoice() {
-            const emailResult = document.getElementById("userEmail2");
-            const emailChoice = document.getElementById("emailCheck").value;
-            userEmail2.value = emailChoice;
+    }
+    function emailchoice() {
+        const emailResult = document.getElementById("userEmail2");
+        const emailChoice = document.getElementById("emailCheck").value;
+        userEmail2.value = emailChoice;
+    }
+    function phoneCheck() {
+        const phone_numCheck = document.getElementById("phoneNum").value;
+        const exp = /^\d{3}-\d{4}-\d{4}$/;
+        const colorChange = document.getElementById("gray2");
+        if (phone_numCheck.match(exp)) {
+            colorChange.style.color = "green";
+        } else {
+            colorChange.style.color = "red";
+
         }
-        function phoneCheck() {
-            const phone_numCheck = document.getElementById("phoneNum").value;
-            const exp = /^\d{3}-\d{4}-\d{4}$/;
-            const colorChange = document.getElementById("gray2");
-            if(phone_numCheck.match(exp)) {
-                colorChange.style.color = "green";
-            }else {
-                colorChange.style.color = "red";
-            }
-        }
-    </script>
+    }
+</script>
 
 </html>
