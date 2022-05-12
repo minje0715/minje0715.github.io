@@ -7,125 +7,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+
     <style>
-        h3{
-            text-align: center;
+        * {
+            margin: 0px;
+            padding: 0px;
+            text-decoration: none;
+            font-family: sans-serif;
+
         }
-       
+
+        body {
+            background-image: #34495e;
+        }
+
+        .joinForm {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            padding: 30px, 20px;
+            background-color: #FFFFFF;
+            text-align: center;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 15px;
+        }
+
+        .joinForm h2 {
+            text-align: center;
+            margin: 30px;
+        }
+
+        .textForm {
+            border-bottom: 2px solid #adadad;
+            margin: 30px;
+            padding: 10px 10px;
+        }
+
+
+        .id {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .pw {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .name {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .email {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .nickname {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .cellphoneNo {
+            width: 100%;
+            border: none;
+            outline: none;
+            color: #636e72;
+            font-size: 16px;
+            height: 25px;
+            background: none;
+        }
+
+        .btn {
+            position: relative;
+            left: 40%;
+            transform: translateX(-50%);
+            margin-bottom: 40px;
+            width: 80%;
+            height: 40px;
+            background: linear-gradient(125deg, #81ecec, #6c5ce7, #81ecec);
+            background-position: left;
+            background-size: 200%;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.4s;
+            display: inline;
+        }
+
+        .btn:hover {
+            background-position: right;
+        }
+
+        i {
+            padding-left: 5px;
+        }
     </style>
 </head>
 
 <body>
 
-    <h3>회원가입페이지</h3>
-    <div>아이디 <br /> <input type="text" id="id1" onblur="idCheck()">
-    <i style="color:gray" id="gray3" class="bi bi-file-lock2"></i> <br /> 
-    <p id="idCheck1"></p>
-    비밀번호 <br /> <input type="password" id="pw1" placeholder="5~16 자리의 숫자, 영문소문자" onblur="password_exp()">
-    <i style="color:gray" id="gray1" class="bi bi-file-lock2"></i>
-    <p id="passwordExp"></p> <br />
-    비밀번호 확인 <br /> <input type="password" id="pw2" placeholder="비밀번호 한번 더 입력" onblur="pwCheck()">
-    <i style="color:gray" id="gray" class="bi bi-file-lock2"></i>
-    <p id="pwCheckResult"></p> <br />
-    이메일 <br /> <input type="text" id="userEmail"> @
-    <input type="text" id="userEmail2">
-    <select id="emailCheck" onchange="emailchoice()">
-        <option value="">직접입력</option>
-        <option value="naver.com">naver.com</option>
-        <option value="daum.net">daum.net</option>
-        <option value="yahoo.com">yahoo.com</option>
-        <option value="nate.com">nate.com</option>
-    </select> <br /> <br />
-    핸드폰번호 <br /> <input type="text" id="phoneNum" onblur="phoneCheck()" placeholder="ex)000-0000-0000">
-    <i style="color:gray" id="gray2" class="bi bi-file-lock2"></i> <br/> <br/>
-    <div>
+    <form action="doJoin" method="POST" class="joinForm" onsubmit="DoJoinForm__submit(this); return false;">
 
-    생년월일<br/>
-        <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)"> <br/>
-             <select id="mm">
-                <option>월</option>
-                <option value="01">1</option>
-                <option value="02">2</option>
-                <option value="03">3</option>
-                <option value="04">4</option>
-                <option value="05">5</option>
-                <option value="06">6</option>
-                <option value="07">7</option>
-                <option value="08">8</option>
-                <option value="09">9</option>
-                <option value="10">10</option>
-                <option value="11">11</option>
-                <option value="12">12</option>
-            </select>
-                <input type="text" id="dd" class="int" maxlength="2" placeholder="일">
-            </div>
-    <hr>
-    <div class="btn_area">
-        <button type="button">
-            <span>가입하기</span>
-        </button>
-     </div>
+        <h2>회원가입</h2>
+        <div class="textForm">
+            <input name="loginId" type="text" class="id" placeholder="아이디">
+            <!-- <i class="bi bi-check" id ="gray3" style="color: white; "></i> -->
+        </div>
+        <h6 id="idCheck1"></h6>
+        <div class="textForm">
+            <input name="loginPw" type="password" class="pw" placeholder="비밀번호">
+            <!-- <i class="bi bi-check" id ="gray1" style="color:white;"></i> -->
+            <h6 id="idCheck2"></h6>
+        </div>
+        <div class="textForm">
+            <input name="loginPwConfirm" type="password" class="pw" placeholder="비밀번호 확인">
+            <!-- <i class="bi bi-check" id ="check" style="color:white;"></i> -->
+        </div>
+        <div class="textForm">
+            <input name="name" type="text" class="name" placeholder="이름">
+            <!-- <i class="bi bi-check" id ="check" style="color:white;"></i> -->
+        </div>
+        <div class="textForm">
+            <input name="email" type="text" class="email" placeholder="이메일">
+            <!-- <i class="bi bi-check" id ="check" style="color:white;"></i> -->
+        </div>
+        <div class="textForm">
+            <input name="nickname" type="text" class="nickname" placeholder="닉네임">
+            <!-- <i class="bi bi-check" id ="check" style="color:white;"></i> -->
+        </div>
+        <div class="textForm">
+            <input name="cellphoneNo" type="number" class="cellphoneNo" placeholder="전화번호">
+            <!-- <i class="bi bi-check" id ="check" style="color:white;"></i> -->
+        </div>
+        <button class="btn" id="" ><a href="./index.html">가입하기</a></button>
+    </form>
+    </div>
 </body>
-<script>
-    function idCheck() {
-        const id = document.getElementById("id1").value;
-        const exp = /^(?=.*[a-z])[a-z\d]{5,15}$/;
-        const idCheck1 = document.getElementById("idCheck1");
-        const colorChange = document.getElementById("gray3")
-        if (id.match(exp)) {
-            idCheck1.innerHTML = "사용 할 수 있는 아이디입니다"
-            idCheck1.style.color = "green";
-            colorChange.style.color = "green";
-        } else {
-            colorChange.style.color = "red";
-            idCheck1.innerHTML = "영어 소문자 + 숫자를 사용하세요"
-            idCheck1.style.color = "red";
-        }
-    }
-    function password_exp() {
-        const pw1 = document.getElementById("pw1").value;
-        const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{5,15}$/;
-        const colorChange = document.getElementById("gray1");
-        const result = document.getElementById("passwordExp");
-        if (!pw1.match(exp)) {
-            result.innerHTML = "영문소문자 + 숫자를 사용하세요!"
-            result.style.color = "red";
-        } else {
-            colorChange.style.color = "green";
-            result.innerHTML = ""
-        }
-    }
-    function pwCheck() {
-        const password1 = document.getElementById("pw1").value;
-        const password2 = document.getElementById("pw2").value;
-        const checkResult = document.getElementById("pwCheckResult");
-        const colorChange = document.getElementById("gray");
-        if (password1 == password2) {
-            checkResult.innerHTML = "비밀번호가 일치합니다";
-            checkResult.style.color = "green";
-            colorChange.style.color = "green";
-        } else {
-            checkResult.innerHTML = "비밀번호가 일치하지 않습니다"
-            checkResult.style.color = "red";
-            colorChange.style.color = "red";
-        }
-    }
-    function emailchoice() {
-        const emailResult = document.getElementById("userEmail2");
-        const emailChoice = document.getElementById("emailCheck").value;
-        userEmail2.value = emailChoice;
-    }
-    function phoneCheck() {
-        const phone_numCheck = document.getElementById("phoneNum").value;
-        const exp = /^\d{3}-\d{4}-\d{4}$/;
-        const colorChange = document.getElementById("gray2");
-        if (phone_numCheck.match(exp)) {
-            colorChange.style.color = "green";
-        } else {
-            colorChange.style.color = "red";
-
-        }
-    }
-</script>
 
 </html>
